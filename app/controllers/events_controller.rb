@@ -25,6 +25,11 @@ class EventsController < ApplicationController
   
   # TODO break this out into a more metal-y controller
   def create
+    headers['Access-Control-Allow-Origin']= request.env['HTTP_ORIGIN']
+    headers['Access-Control-Allow-Methods']=' POST, GET, OPTIONS'
+    headers['Access-Control-Max-Age']= '1000'
+    headers['Access-Control-Allow-Headers']= 'Content-Type';
+    
     Whoops::Event.record(params[:event])
     render :status => 200, :nothing => true
   end
