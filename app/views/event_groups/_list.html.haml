@@ -3,7 +3,8 @@
   %thead
     %tr
       %th.header Service
-      %th.header Message
+      %th.header Group identifier
+      %th.header Last message
       %th.header Type
       %th.header Env
       %th.header Last Occurrence
@@ -11,6 +12,7 @@
   - @event_groups.each do |event_group|
     %tr
       %td= link_to event_group.service, whoops_event_group_events_path(event_group)
+      %td= link_to event_group.identifier, whoops_event_group_events_path(event_group)
       %td= link_to event_group.message.truncate(50), whoops_event_group_events_path(event_group)
       %td= link_to event_group.event_type, whoops_event_group_events_path(event_group)
       %td= link_to event_group.environment, whoops_event_group_events_path(event_group)

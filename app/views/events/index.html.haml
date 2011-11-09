@@ -7,7 +7,7 @@
     = will_paginate @event, :previous_label => "", :next_label => ""
     %ul#instances
       - @events.each_with_index do |event, index|
-        %li{:class => ("selected" if index == 0)}= link_to event.event_time.to_s(:whoops_default), event
+        %li{:class => ("selected" if index == 0)}= link_to "#{event.event_time.to_s(:whoops_default)}: #{event.message.truncate(50)}", event
   .space
     %h3.info-revealer
       Search
@@ -24,16 +24,20 @@
 
 %article.module.width_full
   %header
-    %h3= @event_group.message
+    %h3="Event group" #"Last message: #{@event_group.message}"
   %table
-    - [:environment, :event_type, :last_recorded_at].each do |field|
+
+    - [:service, :identifier, :environment, :event_type, :last_recorded_at].each do |field|
       %tr
         %td.label= field.to_s.humanize
         %td= @event_group.send(field)
+    %tr
+      %td.label Last message:
+      %td= @event_group.message
 
 %article.module.width_full
   %header
-    %h3 Details
+    %h3 Event details
   #event-details
     - if @events.empty?
       %p Your search returned no results.
