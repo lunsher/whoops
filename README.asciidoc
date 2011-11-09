@@ -11,6 +11,11 @@ Whoops is a logging system. It consists of a Rails engine (which records logs an
 
 * finish email notification of events
 * graphing
+lunsher
+* redisign
+* saved searches
+* autocreate search from current event
+* graphs of search in timerange
 
 == Alternatives
 
