@@ -8,6 +8,8 @@ class Whoops::Event
   field :keywords, :type => String
   field :message, :type => String
   field :event_time, :type => DateTime
+  
+  index [[ :event_time, Mongo::DESCENDING ]], :background => true
     
   validates_presence_of :message  
   
