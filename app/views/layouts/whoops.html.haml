@@ -14,7 +14,8 @@
       %hgroup
         %h1.site_title
           = link_to "Whoops", whoops_event_groups_path
-        %h2.section_title 
+        %h2.section_title
+          = @title_place
 
     / end of header bar
     %section#secondary_bar
@@ -25,7 +26,9 @@
           = yield :breadcrumbs
     / end of secondary bar
     %aside#sidebar.column
+      = @before_sidebar_place
       = yield :sidebar
+      = @after_sidebar_place
       %footer
         %hr/
         %p
@@ -33,7 +36,8 @@
 
     / end of sidebar
     %section#main.column
+      = @before_main_place
       = yield
+      = @after_main_place
       / end of styles article
       .spacer
-  
