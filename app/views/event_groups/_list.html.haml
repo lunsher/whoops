@@ -1,21 +1,24 @@
-= will_paginate(@event_groups)
-%table.event-group-list
+= paginate(@event_groups)
+
+.clearfix
+%table.event-group-list.bordered-table.zebra-striped
   %thead
     %tr
-      %th.header Service
-      %th.header Group identifier
-      %th.header Last message
-      %th.header Type
-      %th.header Env
-      %th.header Last Occurrence
-      %th.header
-  - @event_groups.each do |event_group|
-    %tr
-      %td= link_to event_group.service, whoops_event_group_events_path(event_group)
+      %th Service
+      %th Group identifier
+      %th Last Message
+      %th Type
+      %th Env
+      %th Last Occurrence
+      %th
+  %tbody
+    - @event_groups.each do |event_group|
+      %tr
+        %td= link_to event_group.service, whoops_event_group_events_path(event_group)
       %td= link_to event_group.identifier, whoops_event_group_events_path(event_group)
-      %td= link_to event_group.message.truncate(50), whoops_event_group_events_path(event_group)
-      %td= link_to event_group.event_type, whoops_event_group_events_path(event_group)
-      %td= link_to event_group.environment, whoops_event_group_events_path(event_group)
-      %td= link_to event_group.last_recorded_at.to_s(:whoops_default), whoops_event_group_events_path(event_group)
-      %td= link_to event_group.events.count, whoops_event_group_events_path(event_group)
-= will_paginate(@event_groups)
+        %td= link_to event_group.message.truncate(50), whoops_event_group_events_path(event_group)
+        %td= link_to event_group.event_type, whoops_event_group_events_path(event_group)
+        %td= link_to event_group.environment, whoops_event_group_events_path(event_group)
+        %td= link_to event_group.last_recorded_at.to_s(:whoops_default), whoops_event_group_events_path(event_group)
+        %td= link_to event_group.events.count, whoops_event_group_events_path(event_group)
+

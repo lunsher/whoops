@@ -2,42 +2,21 @@
 %html
   %head
     %title Whoops
-    = stylesheet_link_tag 'screen.css', :media => 'screen, projection'
+    = stylesheet_link_tag 'whoops-application', :media => 'screen, projection'
     /[if IE]
       = stylesheet_link_tag 'ie.css', :media => 'screen, projection'
-
-    = javascript_include_tag 'jquery-1.5.2.min', 'jquery.equalHeight', 'jquery.tablesorter.min', 'whoops.js'
+      
+    = javascript_include_tag 'jquery-1.5.2.min', 'whoops'
     = yield :extra_javascripts
     = csrf_meta_tag
-  %body
-    %header#header
-      %hgroup
-        %h1.site_title
-          = link_to "Whoops", whoops_event_groups_path
-        .top_panel
-          = @title_place
 
-    / end of header bar
-    %section#secondary_bar
-      .user
-      .breadcrumbs_container
-        %article.breadcrumbs
-          = link_to "Event List", whoops_event_groups_path, :class => ("current" if controller_name == 'event_groups')
-          = yield :breadcrumbs
-    / end of secondary bar
-    %aside#sidebar.column
-      = @before_sidebar_place
-      = yield :sidebar
-      = @after_sidebar_place
-      %footer
-        %hr/
-        %p
-          %strong Whoops!
-
-    / end of sidebar
-    %section#main.column
-      = @before_main_place
-      = yield
-      = @after_main_place
-      / end of styles article
-      .spacer
+  %body{:id => @body_id}
+    .topbar
+      .listfill
+        .container-fluid
+          = link_to "Whoops", whoops_event_groups_path, :class => "brand"
+    .container-fluid
+      .sidebar
+        = yield :sidebar
+      .content
+        = yield

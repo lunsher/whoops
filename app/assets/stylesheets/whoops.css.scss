@@ -1,0 +1,149 @@
+@import "bootstrap.scss";
+
+body {
+  padding-top:60px;
+  color:#333;
+}
+
+li {
+  color: #333;
+}
+
+.listfill {
+  background:#555;
+}
+
+.alert-message.block-message {
+  border:none;
+}
+
+
+.topbar {
+  color:#999;
+  a {
+    color:white;
+  }
+}
+
+/* sidebar */
+.container-fluid .sidebar {
+  margin-left:-20px;  
+  margin-top:-20px;
+  padding-left:20px;
+  padding-right:20px;
+  width:200px;
+  background:#f8f7ef;
+    
+  input[type=text] {
+    width:190px;
+  }
+    
+
+}
+
+/* for kaminari pagination */
+.sidebar .pagination {
+  margin:0;
+
+  a, .current {
+    line-height: ($baseline * 2) - 2;
+    padding:0;
+    border:none;
+    display:block;
+    float:left;
+    margin-right:2px;  
+  }
+
+  .next, .first, .prev, .last { display:none; }
+}
+
+.content .pagination {
+  height: $baseline * 2 - 2;
+  margin: $baseline 0;
+
+  float: left;
+  margin: 0;
+  border: 1px solid #ddd;
+  border: 1px solid rgba(0,0,0,.15);
+  @include border-radius(3px);
+  @include box-shadow(0 1px 2px rgba(0,0,0,.05));
+
+  .page {
+    display: inline;  
+  }
+
+  a, .current, .page.gap {
+    float: left;
+    padding: 0 14px;
+    line-height: ($baseline * 2) - 2;
+    border-right: 1px solid;
+    border-right-color: #ddd;
+    border-right-color: rgba(0,0,0,.15);
+    *border-right-color: #ddd; /* IE6-7 */
+    text-decoration: none;
+  }
+  a:hover,
+  .current {
+    background-color: lighten($blue, 45%);
+  }
+  .disabled a,
+  .disabled a:hover {
+    background-color: transparent;
+    color: $grayLight;
+  }
+  .next a {
+    border: 0;
+  }
+
+  .last a {
+    border-left: 1px solid #ddd;
+  }
+}
+
+/* main page table links */
+.event-group-list {
+  margin-top: 1em;
+
+  td {
+    padding:0;
+  }  
+
+  a {
+    display:block;
+    padding:10px 10px 9px;
+    
+    &:hover {
+      text-decoration:none;
+    }
+  }
+
+  tbody tr:hover {
+    background-color: lighten($blue, 45%);
+  }
+}
+
+.filter_selects label {
+  cursor: pointer;
+}
+
+/* events for event group */
+.key {
+  font-weight:bold;
+  text-align:right;
+}
+
+ul.detail {
+  margin:0;
+    
+  li {
+    list-style:none;
+    ul {
+      margin-left:20px;
+    }
+  }
+  
+  .key {
+    font-weight:normal;
+    color:$blue;
+  }
+}

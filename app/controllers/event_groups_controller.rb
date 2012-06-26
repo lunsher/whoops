@@ -4,16 +4,10 @@ class EventGroupsController < ApplicationController
   helper_method :event_group_filter
   
   def index
-    finder = if params[:query].blank?
-      Whoops::EventGroup.where(event_group_filter.to_query_document)
-    else
-      Whoops::EventGroup.where(:_id.in => Whoops::Event.where(:keywords => /#{params[:query]}/i).collect{|e| e.event_group_id}.uniq)
-    end
+    query_document = event_group_filter.to_query_document
+    query_document.merge!(:_id.in => Whoops::Event.where(:keywords => /#{params[:query]}/i).distinct(:event_group_id)) unless params[:query].blank?
     
-    @event_groups = finder.desc(:last_recorded_at).paginate(
-      :page => params[:page],
-      :per_page => 20
-    )
+    @event_groups = Whoops::EventGroup.where(query_document).desc(:last_recorded_at).page(params[:page]).per(30)
     
     respond_to do |format|
       format.html
@@ -26,7 +20,7 @@ class EventGroupsController < ApplicationController
   end
   
   def update_event_group_filter
-    self.event_group_filter = params[:whoops_filter] if params[:whoops_filter]
+    self.event_group_filter = params[:whoops_filter] if params[:updating_filters]
   end
   
   def event_group_filter
@@ -34,7 +28,7 @@ class EventGroupsController < ApplicationController
   end
   
   def event_group_filter=(filter)
-    session[:event_group_filter] = Whoops::Filter.new(filter)
+    session[:event_group_filter] = Whoops::Filter.new_from_params(filter)
   end
   
 end
