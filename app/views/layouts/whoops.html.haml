@@ -15,14 +15,15 @@
       .listfill
         .container-fluid
           = link_to "Whoops", whoops_event_groups_path, :class => "brand"
-          = link_to "Event List", whoops_event_groups_path, :class => ("current" if controller_name == 'event_groups')
-          = yield :breadcrumbs
+          %ul.nav
+            %li= link_to "Event List", whoops_event_groups_path, :class => ("current" if controller_name == 'event_groups')
+            %li= yield :breadcrumbs
     .container-fluid
       .sidebar
-        = @before_sidebar_place
+        = raw @before_sidebar_place
         = yield :sidebar
-        = @after_sidebar_place
+        = raw @after_sidebar_place
       .content
-        = @before_main_place
+        = raw @before_main_place
         = yield
-        = @after_main_place
+        = raw @after_main_place
