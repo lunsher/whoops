@@ -16,8 +16,11 @@
         .container-fluid
           = link_to "Whoops", whoops_event_groups_path, :class => "brand"
           %ul.nav
-            %li= link_to "Event List", whoops_event_groups_path, :class => ("current" if controller_name == 'event_groups')
+            %li= link_to "Event List =>", whoops_event_groups_path, :class => ("current" if controller_name == 'event_groups')
+
             %li= yield :breadcrumbs
+          %ul.nav.pull-right
+            = @title_place
     .container-fluid
       .sidebar
         = raw @before_sidebar_place
